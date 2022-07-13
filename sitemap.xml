@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tcluri.github.io/posts/linux-file-permissions/</loc>
+    <lastmod>2022-07-13T12:45:00+05:30</lastmod>
+  </url><url>
+    <loc>https://tcluri.github.io/tags/linux/</loc>
+    <lastmod>2022-07-13T12:45:00+05:30</lastmod>
+  </url><url>
+    <loc>https://tcluri.github.io/posts/</loc>
+    <lastmod>2022-07-13T12:45:00+05:30</lastmod>
+  </url><url>
+    <loc>https://tcluri.github.io/tags/</loc>
+    <lastmod>2022-07-13T12:45:00+05:30</lastmod>
+  </url><url>
+    <loc>https://tcluri.github.io/</loc>
+    <lastmod>2022-07-13T12:45:00+05:30</lastmod>
+  </url><url>
     <loc>https://tcluri.github.io/categories/</loc>
     <lastmod>2022-03-26T13:53:00+05:30</lastmod>
   </url><url>
@@ -11,16 +26,7 @@
     <loc>https://tcluri.github.io/posts/hello-world/</loc>
     <lastmod>2022-03-26T13:53:00+05:30</lastmod>
   </url><url>
-    <loc>https://tcluri.github.io/posts/</loc>
-    <lastmod>2022-03-26T13:53:00+05:30</lastmod>
-  </url><url>
     <loc>https://tcluri.github.io/tags/tag1/</loc>
-    <lastmod>2022-03-26T13:53:00+05:30</lastmod>
-  </url><url>
-    <loc>https://tcluri.github.io/tags/</loc>
-    <lastmod>2022-03-26T13:53:00+05:30</lastmod>
-  </url><url>
-    <loc>https://tcluri.github.io/</loc>
     <lastmod>2022-03-26T13:53:00+05:30</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<title>File permissions in Linux | Tejaa Chintaluri</title>
+
+<link rel="stylesheet" href="https://tcluri.github.io//css/styles.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" 
+integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+<div class="container">
+    <nav class="navbar level">
+      <div class="navbar-brand">
+          <a class="nav-item" href="https://tcluri.github.io/"><h1 class="title is-3">Tejaa Chintaluri</h1></a>
+      </div>           
+      <div class="navbar-menu has-text-centered is-active">
+          <div class="navbar-end is-centered">
+              
+                <a href="https://tcluri.github.io/about" rel="me">
+                  <span class="icon">
+                    <i class="fas fa-info"></i>
+                  </span>
+                </a>
+              
+                <a href="https://github.com/tcluri/" rel="me">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                </a>
+              
+                <a href="https://twitter.com/cst2bicycle/" rel="me">
+                  <span class="icon">
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                </a>
+              
+           </div>
+      </div>
+    </nav>
+  </div>
+
+<div class="container">
+  <h2 class="subtitle is-6">July 13, 2022</h2>
+  <h1 class="subtitle is-size-4-mobile is-size-3-desktop">File permissions in Linux</h1>
+  <div class="content">
+    <h3 id="what-are-file-permissions">What are file permissions?</h3>
+<p>In Linux, file permissions, attributes, and ownership control the access level that
+the system processes and users have to files. This ensures that only authorized users
+and processes can access specific files and directories.</p>
+<p>To find out what permissions exist for files &amp; folders in the current directory,
+do <code>ls -la</code> after the user prompt in the terminal. It is represented by the first
+ten characters that shows for each file/folder present in the directory.</p>
+<p>Example file permissions in current directory</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> user$ ls -la
+</span></span><span style="display:flex;"><span> -rw-r--r-- <span style="color:#ae81ff">1</span> user user <span style="color:#ae81ff">2203</span> Jul <span style="color:#ae81ff">23</span> 23:26 foo.py
+</span></span></code></pre></div><h2 id="permisssion-types">Permisssion types</h2>
+<p>There are three permission types:</p>
+<ol>
+<li>read(r)</li>
+<li>write(w)</li>
+<li>execute(x)</li>
+</ol>
+<h2 id="user-based-permission-groups">User-based permission groups</h2>
+<p>The first ten characters at the beginning of the output in the terminal
+can be broken down into the following</p>
+<ol>
+<li>file type - represented by the zeroth character.</li>
+<li>owner - represented in the first 3 characters.
+The Owner permissions apply only to the owner of the file or
+directory, and will not impact the actions of other users.</li>
+<li>group - represented in the middle 3 characters.
+The Group permissions apply only to the group that has been
+assigned to the file or directory, and will not affect the
+actions of other users.</li>
+<li>all users - represented in the last 3 characters.
+The All Users permissions apply to all other users on the system,
+and this is the permission group that you want to watch the most.</li>
+</ol>
+<p>We can say that the owner of the file (in this case, it&rsquo;s <code>user</code>) foo.py
+has read (r) and write (w) permissions, and the group and the rest of
+users have only read (r) permissions.</p>
+<h2 id="changing-file-permissions-with-chmod">Changing file permissions with chmod</h2>
+<p>By using <code>chmod</code> we can change the file permissions to let a user-based
+permission group have specific access(read/write/execute) to the file.</p>
+<p>The <code>chmod</code> command usage takes the following arguments</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  chmod  &lt;groups to assign the permissions&gt;&lt;permissions to assign/remove&gt; &lt;file/folder names&gt;
+</span></span></code></pre></div><p>Groups to assign the permissions can be specified using the following flags</p>
+<ol>
+<li>u - owner</li>
+<li>g - group</li>
+<li>o - others</li>
+<li>a - all users. For all users, it can also be left blank</li>
+</ol>
+<p>Let us look at few examples of <code>chmod</code></p>
+<h3 id="example-of-permission-change-to-a-file">Example of permission change to a file</h3>
+<p>Adding group&rsquo;s write permission to the file foo.py</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> user$ ls -la
+</span></span><span style="display:flex;"><span> -rwxr-xr-x  <span style="color:#ae81ff">1</span> user user <span style="color:#ae81ff">2203</span> Jul <span style="color:#ae81ff">23</span> 23:26 foo.py
+</span></span><span style="display:flex;"><span> user$ chmod g+w foo.py
+</span></span><span style="display:flex;"><span> user$ ls -la
+</span></span><span style="display:flex;"><span> -rwxrwxr-x  <span style="color:#ae81ff">1</span> user user <span style="color:#ae81ff">2203</span> Jul <span style="color:#ae81ff">23</span> 23:26 foo.py
+</span></span></code></pre></div><h3 id="another-example-of-permission-change">Another example of permission change</h3>
+<p>Removing group&rsquo;s and others&rsquo; execute permission to foo.py</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> user$ ls -la
+</span></span><span style="display:flex;"><span> -rwxrwxr-x <span style="color:#ae81ff">1</span> user user <span style="color:#ae81ff">2203</span> Jul <span style="color:#ae81ff">23</span> 23:26 foo.py
+</span></span><span style="display:flex;"><span> user$ chmod go-x foo.py
+</span></span><span style="display:flex;"><span> user$ ls -la
+</span></span><span style="display:flex;"><span> -rwxrw-r-- <span style="color:#ae81ff">1</span> user user <span style="color:#ae81ff">2203</span> Jul <span style="color:#ae81ff">23</span> 23:26 foo.py
+</span></span></code></pre></div><h3 id="setting-chmod-file-permissions-using-binary-references">Setting chmod file permissions using Binary References</h3>
+<p>Another method in which you can modify the permissions of a file
+using <code>chmod</code> is via binary references which can be described as
+follows.</p>
+<p>The whole string stating the permissions (rwxrwxrwx) is substituted
+by 3 numbers. The first number represents the Owner permission(u); the
+second represents the Group permissions(g); and the last number represents
+the permissions for all other users(o).</p>
+<p>The permission types have assigned values and the sum of the
+combinations is taken as permissions for each user-based permission group.</p>
+<ul>
+<li>r = 4 # read</li>
+<li>w = 2 # write</li>
+<li>x = 1 # execute</li>
+</ul>
+<h4 id="example-for-permission-change-using-binary-reference">Example for permission change using Binary Reference</h4>
+<p>Assign to the foo.py file the following permissions:</p>
+<ul>
+<li>Owner: Read, Write and Execute</li>
+<li>Group: Read and Execute</li>
+<li>All others: Read and Execute</li>
+</ul>
+<p><em>Calculating the user-based permission groups values:</em></p>
+<p>Owner: r+w+x      = 4+2+1 = 7 <br />
+Group: r+x        = 4+0+1 = 5 <br />
+All others: r+x   = 4+0+1 = 5</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> user$ ls -la
+</span></span><span style="display:flex;"><span> -rwxrw-r-- <span style="color:#ae81ff">1</span> user user <span style="color:#ae81ff">2257</span> Jul <span style="color:#ae81ff">12</span> 01:23 foo.py
+</span></span><span style="display:flex;"><span> user$ chmod <span style="color:#ae81ff">755</span> foo.py
+</span></span><span style="display:flex;"><span> user$ ls -la
+</span></span><span style="display:flex;"><span> -rwxr-xr-x <span style="color:#ae81ff">1</span> user user <span style="color:#ae81ff">2257</span> Jul <span style="color:#ae81ff">12</span> 01:23 foo.py
+</span></span></code></pre></div>
+  </div>
+</div>
+<div class="container has-text-centered">
+    
+</div>
+
+<div class="container has-text-centered">
+  
+</div>
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
