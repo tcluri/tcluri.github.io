@@ -1,0 +1,9 @@
+public/
+resources/
+content-org/auto/
+/hugo
+tmp/
+auto/
+.hugo_build.lock
+/content-org/images/
+/pyenv/
