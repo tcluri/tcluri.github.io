@@ -29,31 +29,45 @@ Quick refresher of doomemacs commands, from the commandline:
 
 ### Enable org-mode and +hugo it {#enable-org-mode-and-plus-hugo-it}
 
-To install org-mode, go to your `init.el` file in your doom config folder. You can use `SPC f p` and then select by filename.
+In doomemacs org-mode should be enabled by default. To add `ox-hugo`, go to your `init.el` file in your doom config folder. You can use `SPC f p` and then select by filename.
 
-In it, enable org-mode and hugo under the `:lang` heading.
+Under the `:lang` heading, look for the line with `org` and add `+hugo` like below
 
 ```emacs-lisp
-       :lang
-       ;; ... OTHER packages
-       ;;nix               ; I hereby declare "nix geht mehr!"
-       ;;ocaml             ; an objective camel
-       (org +hugo)         ; organize your plain life in plain text
-       ;;php               ; perl's insecure younger brother
-       ;;plantuml          ; diagrams for confusing people more
+  :lang
+  ;; ... OTHER packages
+  ;;nix               ; I hereby declare "nix geht mehr!"
+  ;;ocaml             ; an objective camel
+  (org +hugo)         ; organize your plain life in plain text
+  ;;php               ; perl's insecure younger brother
+  ;;plantuml          ; diagrams for confusing people more
 ```
 
-This enables [ox-hugo](https://ox-hugo.scripter.co/) package which exports your posts in your `.org` file to markdown that is readable by Hugo(which we will install now).
+If you are using standard Emacs config, an equivalent config with `use-package` is this
 
-If you are using standard Emacs config, this does quite a lot on the org side of things and you can see exactly what it is [here](https://github.com/doomemacs/doomemacs/tree/master/modules/lang/org).
+```emacs-lisp
+(use-package ox-hugo
+  :ensure t
+  :pin melpa
+  :after ox)
+```
+
+This enables [ox-hugo](https://ox-hugo.scripter.co/) package which exports your posts in your `.org` file to markdown that is readable by Hugo(which we will now install)
 
 
 ## Hugo {#hugo}
 
 Hugo is a static site generator written in Go. Hugo is great and everyone should use it. Let's get it installed on our machine using commandline,
 this way we get to use the latest version and upgrade later on if needed. Before we do that we need to have the Go programming language installed.
-Go to the install [page](https://go.dev/doc/install) and follow the instructions, they are clear and you can confirm it is installed using `go version` in your terminal, the
+
+
+### Installing Golang {#installing-golang}
+
+Go to the install [page](https://go.dev/doc/install) and follow the instructions, they are clear and make sure you have added `/usr/local/go/bin` to the PATH environment variable. Confirm it is installed using `go version` in your terminal, the
 version should be `1.20` or greater since Hugo requires this.
+
+
+### Get Hugo {#get-hugo}
 
 To install Hugo after you have installed the Go language run the following command,
 
@@ -63,7 +77,14 @@ go install github.com/gohugoio/hugo@latest
 
 This is the standard version of Hugo and not the extended edition, if you need that refer [here](https://github.com/gohugoio/hugo?tab=readme-ov-file#build-from-source)
 
-You can check that hugo is installed using `hugo version` at the commandline.
+By default, binaries are installed to the bin subdirectory of the default `GOPATH` (`$HOME/go` in linux) so make sure to add it like so in your `.bashrc`
+
+```nil
+# Add go installs to PATH
+export PATH="$PATH:~/go/bin"
+```
+
+In a new terminal or once you have sourced your `.bashrc` file, check that hugo is installed using `hugo version`.
 
 
 ## Setting things up {#setting-things-up}
@@ -71,7 +92,7 @@ You can check that hugo is installed using `hugo version` at the commandline.
 Create an empty git repository on Github, the name of your repository should be `<username>.github.io`
 and clone it on your machine to a folder named `blog` or something else.
 
-Now intialize hugo in the blog folder, use `--force` since it is a non-empty directory since it contains `.git` folder
+Now intialize hugo in the blog folder, use `--force` since it is a non-empty directory and it contains `.git` folder
 
 ```nil
 hugo new site --force blog
@@ -100,10 +121,28 @@ hugo mod get -u
 From here on, you can follow from the step #5 from ox-hugo's quickstart i.e "Appending lines to the site config": <https://ox-hugo.scripter.co/doc/quick-start/>
 
 
-### Github actions {#github-actions}
+### Writing a post and exporting it {#writing-a-post-and-exporting-it}
 
-To setup github actions to start deploying once you commit a post to your repository on Github i.e after writing your post in `content-org` directory and exporting it via `ox-hugo` using
-`C-c C-e H H`, see [here](https://gohugo.io/hosting-and-deployment/hosting-on-github/#step-by-step-instructions).
+Once you are done writing your post in org file residing in your `content-org/` directory, export it using `C-c C-e H H`.
+This will create a markdown file in `content/` directory with the name that you provide in the properties of the org heading
+
+```org
+:PROPERTIES:
+:EXPORT_FILE_NAME: org-doomemacs-hugo
+:END:
+```
+
+Hugo reads this markdown file in the `content/` directory and generates the necessary contents for the site.
+Commit the markdown file to your repository.
+
+
+### Auto deploy using Github actions {#auto-deploy-using-github-actions}
+
+To setup github actions to start deploying once you commit a markdown post that gets generated in the `content/` directory to your repository on Github see [here](https://gohugo.io/hosting-and-deployment/hosting-on-github/#step-by-step-instructions).
+
+-   Change the settings of your repository to enable Github actions
+-   Create a file `.github/workflows/hugo.yaml` in your repository and paste the contents from the link
+-   Commit this file to your repository and see the magic happen 🎉
 
 
 ## References {#references}
@@ -112,3 +151,9 @@ For references (or) further reading:
 
 -   <https://ox-hugo.scripter.co/doc/quick-start/>
 -   <https://ridaayed.com/posts/howto-ox-hugo-github-pages/>
+
+
+## Thanks {#thanks}
+
+Thanks to [Shantanu](https://baali.muse-amuse.in/) and [Punch](https://github.com/punchagan) for suggesting me to write this post and for feedback which helped clarify
+things. Thank you for reading
