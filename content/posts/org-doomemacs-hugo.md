@@ -6,18 +6,20 @@ tags = ["blog", "org", "doomemacs", "hugo"]
 draft = false
 +++
 
-Hello! This is a post describing how anyone who uses Doomemacs can setup a blog and get writing.
-To get started, familiarize yourself with what I'm assuming you know to do. If you don't, read on - there will be links you might find helpful. We are here to learn 😃
+Hello! This is a post describing how anyone who uses Doomemacs can setup a blog on Github user pages and get writing.
+To get started, familiarize yourself with what I'm assuming you know to do.
 
 -   Know how doomemacs works to the extent that you can find where your init.el is and upgrade/sync from the commandline.
 -   Know how to install the Go programming language on your linux machine and can install a go package(😉 Hugo)
 -   Know how to use git well enough to commit/push your changes to a repository online - we'll be using Github
 -   Know how to do a backflip once we are done, in your head is fine too
 
+If you don't know any of these, read on - there will be links you might find helpful. We are here to learn 😃
+
 
 ## Doomemacs {#doomemacs}
 
-Doomemacs is a configuration framework for Emacs. You get many things out of the box - a starter pack of which you can disable/enable away options at your will.
+Doomemacs is a starter pack of default configurations for Emacs. You get many things out of the box -  which you can disable/enable away at your will.
 Try to use the latest doom configuration, I tend to upgrade doomemacs once in 3 months or whenever it is necessary which usually means that a package got an upgrade or a bug that got fixed.
 Once you try it, there is no going back to other configs/setups unless you are the person who loves your current Emacs config 🫡
 
@@ -29,7 +31,7 @@ Quick refresher of doomemacs commands, from the commandline:
 
 ### Enable org-mode and +hugo it {#enable-org-mode-and-plus-hugo-it}
 
-In doomemacs org-mode should be enabled by default. To add `ox-hugo`, go to your `init.el` file in your doom config folder. You can use `SPC f p` and then select by filename.
+In doomemacs, org-mode should be enabled by default. To add `ox-hugo`, go to your `init.el` file in your doom config folder. You can use `SPC f p` and then select by filename.
 
 Under the `:lang` heading, look for the line with `org` and add `+hugo` like below
 
@@ -58,13 +60,17 @@ This enables [ox-hugo](https://ox-hugo.scripter.co/) package which exports your 
 ## Hugo {#hugo}
 
 Hugo is a static site generator written in Go. Hugo is great and everyone should use it. Let's get it installed on our machine using commandline,
-this way we get to use the latest version and upgrade later on if needed. Before we do that we need to have the Go programming language installed.
+this way we get to use the latest version and upgrade later on if needed
+{{% sidenote %}}
+This depends on if the theme you choose also supports the latest Hugo version.
+See under "Get Hugo"
+{{% /sidenote %}} . But before we do that we need to have the Go programming language installed.
 
 
 ### Installing Golang {#installing-golang}
 
-Go to the install [page](https://go.dev/doc/install) and follow the instructions, they are clear and make sure you have added `/usr/local/go/bin` to the PATH environment variable. Confirm it is installed using `go version` in your terminal, the
-version should be `1.20` or greater since Hugo requires this.
+Go to the install [page](https://go.dev/doc/install) and follow the instructions, they are clear and make sure you have added `/usr/local/go/bin` to the PATH environment variable.
+Confirm it is installed using `go version` in your terminal, the version should be `1.20` or greater since Hugo requires this.
 
 
 ### Get Hugo {#get-hugo}
@@ -76,6 +82,19 @@ go install github.com/gohugoio/hugo@latest
 ```
 
 This is the standard version of Hugo and not the extended edition, if you need that refer [here](https://github.com/gohugoio/hugo?tab=readme-ov-file#build-from-source)
+
+🚨 Installing Hugo with `@latest` might not work well with your theme and can break your site.
+To check if a theme works well with a Hugo version you have, head over to the theme's repository and look in the `config.toml` file.
+
+An example `config.toml` file in a theme's repository, here the maximum supported Hugo version is `0.84.2`
+
+```nil
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.55.0"
+    max = "0.84.2"
+```
 
 By default, binaries are installed to the bin subdirectory of the default `GOPATH` (`$HOME/go` in linux) so make sure to add it like so in your `.bashrc`
 
