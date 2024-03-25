@@ -6,7 +6,9 @@ tags = ["linux"]
 draft = false
 +++
 
-## What are file permissions? {#what-are-file-permissions}
+What are file permissions?
+
+<!--more-->
 
 In Linux, file permissions, attributes, and ownership control the access level that
 the system processes and users have to files. This ensures that only authorized users

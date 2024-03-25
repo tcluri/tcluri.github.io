@@ -9,6 +9,8 @@ draft = false
 Hello! This is a post describing how anyone who uses Doomemacs can setup a blog on Github user pages and get writing.
 To get started, familiarize yourself with what I'm assuming you know to do.
 
+<!--more-->
+
 -   Know how doomemacs works to the extent that you can find where your init.el is and upgrade/sync from the commandline.
 -   Know how to install the Go programming language on your linux machine and can install a go package(😉 Hugo)
 -   Know how to use git well enough to commit/push your changes to a repository online - we'll be using Github
