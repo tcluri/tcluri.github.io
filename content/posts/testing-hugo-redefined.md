@@ -22,7 +22,7 @@ We upgraded the theme to be fully compatible with **Hugo v0.164.0** and simplifi
 Here is some text with an inline sidenote
 
 {{% sidenote %}}
-Sidenotes appear cleanly in the right margin on desktop screens and inline on mobile devices!
+Sidenotes appear cleanly in the left margin on desktop screens and inline on mobile devices!
 {{% /sidenote %}}
 
 to show how flexible Org shortcodes are.
