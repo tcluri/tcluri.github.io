@@ -12,5 +12,7 @@ github.com/kaushalmodi/hugo-search-fuse-js v0.4.4/go.mod h1:Wr6gbPat+KW6wReh/hDB
 github.com/krisk/Fuse v3.2.1+incompatible/go.mod h1:3moWv8rDjwoKic9nwiPLgZjldkbdTAbtzJHCu/Vsj4A=
 github.com/krisk/Fuse v7.0.0+incompatible h1:jVyg6No+Joc51Rn97QQYJZIpCxzd4ywACn/4+FKWjvo=
 github.com/krisk/Fuse v7.0.0+incompatible/go.mod h1:3moWv8rDjwoKic9nwiPLgZjldkbdTAbtzJHCu/Vsj4A=
+github.com/krisk/Fuse v7.5.0+incompatible h1:voQAS1O4GVeLu6R3fR8+ZxB6G7FO7u6PW05TwFzcQE4=
+github.com/krisk/Fuse v7.5.0+incompatible/go.mod h1:3moWv8rDjwoKic9nwiPLgZjldkbdTAbtzJHCu/Vsj4A=
 gitlab.com/kaushalmodi/hugo-theme-refined v0.14.5 h1:o8EhC9wzGMnSCKNmCqzrKc6PIM4DBCN8WjXvYSXjGbk=
 gitlab.com/kaushalmodi/hugo-theme-refined v0.14.5/go.mod h1:/neiFc1Liz+RMJKLYV+joZzV0/ZgJpe9wpH3Tzm8Sok=

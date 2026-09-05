@@ -9,14 +9,12 @@ publishdir = "public"
 cleandestinationdir = true
 
 enableEmoji = true
-
-languageCode = 'en-us'
-
+locale = 'en-us'
 disableFastRender = true
 
 [module]
   [[module.imports]]
-    path = "gitlab.com/kaushalmodi/hugo-theme-refined"
+    path = "github.com/tcluri/hugo-theme-redefined"
 
 [Author]
   name = "Tejaa Chintaluri"
@@ -27,6 +25,7 @@ disableFastRender = true
   twitter = "tcluri_"
 
 [Params]
+  mainSections = ["posts"]
   tagline = "My random notes"
 
   # Go date formats: https://golang.org/pkg/time/#pkg-constants

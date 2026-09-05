@@ -1,9 +1,10 @@
-public/
+# Build and cache artifacts (public/ is tracked for direct GitHub Pages deployment)
 resources/
-content-org/auto/
-/hugo
+.hugo_build.lock
 tmp/
 auto/
-.hugo_build.lock
-/content-org/images/
 /pyenv/
+
+# ox-hugo org cache
+content-org/auto/
+/content-org/images/

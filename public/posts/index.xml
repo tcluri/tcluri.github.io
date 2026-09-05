@@ -1,0 +1,198 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on
+tcluri:$</title><link>https://tcluri.github.io/posts/</link><description>Recent content in Posts
+on tcluri:$</description><language>en-us</language><lastBuildDate>Sat, 05 Sep 2026 06:30:12 +0530</lastBuildDate><generator>Hugo -- gohugo.io</generator><docs>https://validator.w3.org/feed/docs/rss2.html</docs><atom:link href="https://tcluri.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog using org-mode in Doomemacs with Hugo</title><link>https://tcluri.github.io/posts/org-doomemacs-hugo/</link><description>&lt;p&gt;Hello! This is a post describing how anyone who uses Doomemacs can setup a blog on Github user pages and get writing.
+To get started, familiarize yourself with what I&amp;rsquo;m assuming you know to do.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Know how doomemacs works to the extent that you can find where your init.el is and upgrade/sync from the commandline.&lt;/li&gt;
+&lt;li&gt;Know how to install the Go programming language on your linux machine and can install a go package(😉 Hugo)&lt;/li&gt;
+&lt;li&gt;Know how to use git well enough to commit/push your changes to a repository online - we&amp;rsquo;ll be using Github&lt;/li&gt;
+&lt;li&gt;Know how to do a backflip once we are done, in your head is fine too&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you don&amp;rsquo;t know any of these, read on - there will be links you might find helpful. We are here to learn 😃&lt;/p&gt;
+&lt;h2 id="doomemacs"&gt;Doomemacs&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#doomemacs"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Doomemacs is a starter pack of default configurations for Emacs. You get many things out of the box - which you can disable/enable away at your will.
+Try to use the latest doom configuration, I tend to upgrade doomemacs once in 3 months or whenever it is necessary which usually means that a package got an upgrade or a bug that got fixed.
+Once you try it, there is no going back to other configs/setups unless you are the person who loves your current Emacs config 🫡&lt;/p&gt;
+&lt;p&gt;Quick refresher of doomemacs commands, from the commandline:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;doom upgrade&lt;/code&gt; - upgrades doom itself, fetching latest packages and their configuration.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;doom sync&lt;/code&gt; - installs/removes packages and loads the packages by reading your doom config.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="enable-org-mode-and-plus-hugo-it"&gt;Enable org-mode and +hugo it&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#enable-org-mode-and-plus-hugo-it"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In doomemacs, org-mode should be enabled by default. To add &lt;code&gt;ox-hugo&lt;/code&gt;, go to your &lt;code&gt;init.el&lt;/code&gt; file in your doom config folder. You can use &lt;code&gt;SPC f p&lt;/code&gt; and then select by filename.&lt;/p&gt;
+&lt;p&gt;Under the &lt;code&gt;:lang&lt;/code&gt; heading, look for the line with &lt;code&gt;org&lt;/code&gt; and add &lt;code&gt;+hugo&lt;/code&gt; like below&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-emacs-lisp" data-lang="emacs-lisp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; :lang
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;;; ... OTHER packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;;;nix ; I hereby declare &amp;#34;nix geht mehr!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;;;ocaml ; an objective camel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (org +hugo) &lt;span style="color:#75715e"&gt;; organize your plain life in plain text&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;;;php ; perl&amp;#39;s insecure younger brother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;;;plantuml ; diagrams for confusing people more&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you are using standard Emacs config, an equivalent config with &lt;code&gt;use-package&lt;/code&gt; is this&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-emacs-lisp" data-lang="emacs-lisp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(use-package ox-hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; :ensure &lt;span style="color:#66d9ef"&gt;t&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; :pin melpa
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; :after ox)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This enables &lt;a href="https://ox-hugo.scripter.co/"&gt;ox-hugo&lt;/a&gt; package which exports your posts in your &lt;code&gt;.org&lt;/code&gt; file to markdown that is readable by Hugo(which we will now install)&lt;/p&gt;
+&lt;h2 id="hugo"&gt;Hugo&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#hugo"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hugo is a static site generator written in Go. Hugo is great and everyone should use it. Let&amp;rsquo;s get it installed on our machine using commandline,
+this way we get to use the latest version and upgrade later on if needed
+&lt;span class="sidenote-number"&gt;&lt;small class="sidenote"&gt;
+This depends on if the theme you choose also supports the latest Hugo version.
+See under &amp;ldquo;Get Hugo&amp;rdquo;
+&lt;/small&gt;&lt;/span&gt;
+. But before we do that we need to have the Go programming language installed.&lt;/p&gt;
+&lt;h3 id="installing-golang"&gt;Installing Golang&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#installing-golang"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Go to the install &lt;a href="https://go.dev/doc/install"&gt;page&lt;/a&gt; and follow the instructions, they are clear and make sure you have added &lt;code&gt;/usr/local/go/bin&lt;/code&gt; to the PATH environment variable.
+Confirm it is installed using &lt;code&gt;go version&lt;/code&gt; in your terminal, the version should be &lt;code&gt;1.20&lt;/code&gt; or greater since Hugo requires this.&lt;/p&gt;
+&lt;h3 id="get-hugo"&gt;Get Hugo&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#get-hugo"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To install Hugo after you have installed the Go language run the following command,&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt;go install github.com/gohugoio/hugo@latest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is the standard version of Hugo and not the extended edition, if you need that refer &lt;a href="https://github.com/gohugoio/hugo?tab=readme-ov-file#build-from-source"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;🚨 Installing Hugo with &lt;code&gt;@latest&lt;/code&gt; might not work well with your theme and can break your site.
+To check if a theme works well with a Hugo version you have, head over to the theme&amp;rsquo;s repository and look in the &lt;code&gt;config.toml&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;An example &lt;code&gt;config.toml&lt;/code&gt; file in a theme&amp;rsquo;s repository, here the maximum supported Hugo version is &lt;code&gt;0.84.2&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt;[module]
+[module.hugoVersion]
+extended = true
+min = &amp;#34;0.55.0&amp;#34;
+max = &amp;#34;0.84.2&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;By default, binaries are installed to the bin subdirectory of the default &lt;code&gt;GOPATH&lt;/code&gt; (&lt;code&gt;$HOME/go&lt;/code&gt; in linux) so make sure to add it like so in your &lt;code&gt;.bashrc&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt;# Add go installs to PATH
+export PATH=&amp;#34;$PATH:~/go/bin&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In a new terminal or once you have sourced your &lt;code&gt;.bashrc&lt;/code&gt; file, check that hugo is installed using &lt;code&gt;hugo version&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="setting-things-up"&gt;Setting things up&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#setting-things-up"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Create an empty git repository on Github, the name of your repository should be &lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;
+and clone it on your machine to a folder named &lt;code&gt;blog&lt;/code&gt; or something else.&lt;/p&gt;
+&lt;p&gt;Now intialize hugo in the blog folder, use &lt;code&gt;--force&lt;/code&gt; since it is a non-empty directory and it contains &lt;code&gt;.git&lt;/code&gt; folder&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt;hugo new site --force blog
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;From inside the blog folder, &lt;code&gt;cd&lt;/code&gt; into it, make hugo blog as a hugo module. This enables the blog&amp;rsquo;s theme to be used as a module.&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt;hugo mod init github.com/username/username.github.io
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Add the following lines to your &lt;code&gt;hugo.toml&lt;/code&gt; (previously it was &lt;code&gt;config.toml&lt;/code&gt;) to add a theme. Select any you like, there are &lt;a href="https://themes.gohugo.io/"&gt;lots&lt;/a&gt;.&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-config" data-lang="config"&gt;[module]
+[[module.imports]]
+path = &amp;#34;github.com/athul/archie&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;On the command line, run the following&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt;hugo mod get -u
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;From here on, you can follow from the step #5 from ox-hugo&amp;rsquo;s quickstart i.e &amp;ldquo;Appending lines to the site config&amp;rdquo;: &lt;a href="https://ox-hugo.scripter.co/doc/quick-start/"&gt;https://ox-hugo.scripter.co/doc/quick-start/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="writing-a-post-and-exporting-it"&gt;Writing a post and exporting it&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#writing-a-post-and-exporting-it"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once you are done writing your post in org file residing in your &lt;code&gt;content-org/&lt;/code&gt; directory, export it using &lt;code&gt;C-c C-e H H&lt;/code&gt;.
+This will create a markdown file in &lt;code&gt;content/&lt;/code&gt; directory with the name that you provide in the properties of the org heading&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-org" data-lang="org"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;:PROPERTIES:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;:EXPORT_FILE_NAME: org-doomemacs-hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;:END:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hugo reads this markdown file in the &lt;code&gt;content/&lt;/code&gt; directory and generates the necessary contents for the site.
+Commit the markdown file to your repository.&lt;/p&gt;
+&lt;h3 id="auto-deploy-using-github-actions"&gt;Auto deploy using Github actions&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#auto-deploy-using-github-actions"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To setup github actions to start deploying once you commit a markdown post that gets generated in the &lt;code&gt;content/&lt;/code&gt; directory to your repository on Github see &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#step-by-step-instructions"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change the settings of your repository to enable Github actions&lt;/li&gt;
+&lt;li&gt;Create a file &lt;code&gt;.github/workflows/hugo.yaml&lt;/code&gt; in your repository and paste the contents from the link&lt;/li&gt;
+&lt;li&gt;Commit this file to your repository and see the magic happen 🎉&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="references"&gt;References&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#references"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For references (or) further reading:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ox-hugo.scripter.co/doc/quick-start/"&gt;https://ox-hugo.scripter.co/doc/quick-start/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ridaayed.com/posts/howto-ox-hugo-github-pages/"&gt;https://ridaayed.com/posts/howto-ox-hugo-github-pages/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="thanks"&gt;Thanks&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#thanks"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Thanks to &lt;a href="https://baali.muse-amuse.in/"&gt;Shantanu&lt;/a&gt; and &lt;a href="https://github.com/punchagan"&gt;Punch&lt;/a&gt; for suggesting me to write this post and for feedback which helped clarify
+things. Thank you for reading&lt;/p&gt;</description><author>tcluri@fakeEmailToMakeValidatorHappy.com (tcluri)</author><category domain="https://tcluri.github.io/tags/blog">blog</category><category domain="https://tcluri.github.io/tags/org">org</category><category domain="https://tcluri.github.io/tags/doomemacs">doomemacs</category><category domain="https://tcluri.github.io/tags/hugo">hugo</category><guid>https://tcluri.github.io/posts/org-doomemacs-hugo/</guid><pubDate>Sat, 23 Mar 2024 14:00:00 +0530</pubDate></item><item><title>File permissions in Linux</title><link>https://tcluri.github.io/posts/linux-file-permissions/</link><description>&lt;p&gt;What are file permissions?&lt;/p&gt;
+&lt;p&gt;In Linux, file permissions, attributes, and ownership control the access level that
+the system processes and users have to files. This ensures that only authorized users
+and processes can access specific files and directories.&lt;/p&gt;
+&lt;p&gt;To find out what permissions exist for files &amp;amp; folders in the current directory,
+do &lt;code&gt;ls -la&lt;/code&gt; after the user prompt in the terminal. It is represented by the first
+ten characters that shows for each file/folder present in the directory.&lt;/p&gt;
+&lt;p&gt;Example file permissions in current directory&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rw-r--r-- 1 user user 2203 Jul 23 23:26 foo.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="permisssion-types"&gt;Permisssion types&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#permisssion-types"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are three permission types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;read(r)&lt;/li&gt;
+&lt;li&gt;write(w)&lt;/li&gt;
+&lt;li&gt;execute(x)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="user-based-permission-groups"&gt;User-based permission groups&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#user-based-permission-groups"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first ten characters at the beginning of the output in the terminal
+can be broken down into the following&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;file type - represented by the zeroth character.&lt;/li&gt;
+&lt;li&gt;owner - represented in the first 3 characters.
+The Owner permissions apply only to the owner of the file or
+directory, and will not impact the actions of other users.&lt;/li&gt;
+&lt;li&gt;group - represented in the middle 3 characters.
+The Group permissions apply only to the group that has been
+assigned to the file or directory, and will not affect the
+actions of other users.&lt;/li&gt;
+&lt;li&gt;all users - represented in the last 3 characters.
+The All Users permissions apply to all other users on the system,
+and this is the permission group that you want to watch the most.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We can say that the owner of the file (in this case, it&amp;rsquo;s &lt;code&gt;user&lt;/code&gt;) foo.py
+has read (r) and write (w) permissions, and the group and the rest of
+users have only read (r) permissions.&lt;/p&gt;
+&lt;h2 id="changing-file-permissions-with-chmod"&gt;Changing file permissions with chmod&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#changing-file-permissions-with-chmod"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;By using &lt;code&gt;chmod&lt;/code&gt; we can change the file permissions to let a user-based
+permission group have specific access(read/write/execute) to the file.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;chmod&lt;/code&gt; command usage takes the following arguments&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; chmod &amp;lt;groups to assign the permissions&amp;gt;&amp;lt;permissions to assign/remove&amp;gt; &amp;lt;file/folder names&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Groups to assign the permissions can be specified using the following flags&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;u - owner&lt;/li&gt;
+&lt;li&gt;g - group&lt;/li&gt;
+&lt;li&gt;o - others&lt;/li&gt;
+&lt;li&gt;a - all users. For all users, it can also be left blank&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let us look at few examples of &lt;code&gt;chmod&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="example-of-permission-change-to-a-file"&gt;Example of permission change to a file&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#example-of-permission-change-to-a-file"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Adding group&amp;rsquo;s write permission to the file foo.py&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rwxr-xr-x 1 user user 2203 Jul 23 23:26 foo.py
+user$ chmod g+w foo.py
+user$ ls -la
+-rwxrwxr-x 1 user user 2203 Jul 23 23:26 foo.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="another-example-of-permission-change"&gt;Another example of permission change&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#another-example-of-permission-change"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Removing group&amp;rsquo;s and others&amp;rsquo; execute permission to foo.py&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rwxrwxr-x 1 user user 2203 Jul 23 23:26 foo.py
+user$ chmod go-x foo.py
+user$ ls -la
+-rwxrw-r-- 1 user user 2203 Jul 23 23:26 foo.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="setting-chmod-file-permissions-using-binary-references"&gt;Setting chmod file permissions using Binary References&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#setting-chmod-file-permissions-using-binary-references"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Another method in which you can modify the permissions of a file
+using &lt;code&gt;chmod&lt;/code&gt; is via binary references which can be described as
+follows.&lt;/p&gt;
+&lt;p&gt;The whole string stating the permissions (rwxrwxrwx) is substituted
+by 3 numbers. The first number represents the Owner permission(u); the
+second represents the Group permissions(g); and the last number represents
+the permissions for all other users(o).&lt;/p&gt;
+&lt;p&gt;The permission types have assigned values and the sum of the
+combinations is taken as permissions for each user-based permission group.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;r = 4 # read&lt;/li&gt;
+&lt;li&gt;w = 2 # write&lt;/li&gt;
+&lt;li&gt;x = 1 # execute&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="example-for-permission-change-using-binary-reference"&gt;Example for permission change using Binary Reference&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#example-for-permission-change-using-binary-reference"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Assign to the foo.py file the following permissions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Owner: Read, Write and Execute&lt;/li&gt;
+&lt;li&gt;Group: Read and Execute&lt;/li&gt;
+&lt;li&gt;All others: Read and Execute&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Calculating the user-based permission groups values:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Owner: r+w+x = 4+2+1 = 7 &lt;br /&gt;
+Group: r+x = 4+0+1 = 5 &lt;br /&gt;
+All others: r+x = 4+0+1 = 5&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rwxrw-r-- 1 user user 2257 Jul 12 01:23 foo.py
+user$ chmod 755 foo.py
+user$ ls -la
+-rwxr-xr-x 1 user user 2257 Jul 12 01:23 foo.py
+&lt;/code&gt;&lt;/pre&gt;</description><author>tcluri@fakeEmailToMakeValidatorHappy.com (tcluri)</author><category domain="https://tcluri.github.io/tags/linux">linux</category><guid>https://tcluri.github.io/posts/linux-file-permissions/</guid><pubDate>Wed, 13 Jul 2022 12:45:00 +0530</pubDate></item><item><title>Hello world</title><link>https://tcluri.github.io/posts/hello-world/</link><description>&lt;p&gt;Hello World! This is my website built using hugo with ox-hugo, emacs and org-mode.&lt;/p&gt;</description><author>tcluri@fakeEmailToMakeValidatorHappy.com (tcluri)</author><category domain="https://tcluri.github.io/tags/blog">blog</category><guid>https://tcluri.github.io/posts/hello-world/</guid><pubDate>Sat, 26 Mar 2022 13:53:00 +0530</pubDate></item></channel></rss>

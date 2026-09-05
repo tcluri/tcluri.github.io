@@ -1,0 +1,100 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on
+tcluri:$</title><link>https://tcluri.github.io/tags/linux/</link><description>Recent content in Linux
+on tcluri:$</description><language>en-us</language><lastBuildDate>Sat, 05 Sep 2026 06:30:12 +0530</lastBuildDate><generator>Hugo -- gohugo.io</generator><docs>https://validator.w3.org/feed/docs/rss2.html</docs><atom:link href="https://tcluri.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>File permissions in Linux</title><link>https://tcluri.github.io/posts/linux-file-permissions/</link><description>&lt;p&gt;What are file permissions?&lt;/p&gt;
+&lt;p&gt;In Linux, file permissions, attributes, and ownership control the access level that
+the system processes and users have to files. This ensures that only authorized users
+and processes can access specific files and directories.&lt;/p&gt;
+&lt;p&gt;To find out what permissions exist for files &amp;amp; folders in the current directory,
+do &lt;code&gt;ls -la&lt;/code&gt; after the user prompt in the terminal. It is represented by the first
+ten characters that shows for each file/folder present in the directory.&lt;/p&gt;
+&lt;p&gt;Example file permissions in current directory&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rw-r--r-- 1 user user 2203 Jul 23 23:26 foo.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="permisssion-types"&gt;Permisssion types&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#permisssion-types"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are three permission types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;read(r)&lt;/li&gt;
+&lt;li&gt;write(w)&lt;/li&gt;
+&lt;li&gt;execute(x)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="user-based-permission-groups"&gt;User-based permission groups&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#user-based-permission-groups"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first ten characters at the beginning of the output in the terminal
+can be broken down into the following&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;file type - represented by the zeroth character.&lt;/li&gt;
+&lt;li&gt;owner - represented in the first 3 characters.
+The Owner permissions apply only to the owner of the file or
+directory, and will not impact the actions of other users.&lt;/li&gt;
+&lt;li&gt;group - represented in the middle 3 characters.
+The Group permissions apply only to the group that has been
+assigned to the file or directory, and will not affect the
+actions of other users.&lt;/li&gt;
+&lt;li&gt;all users - represented in the last 3 characters.
+The All Users permissions apply to all other users on the system,
+and this is the permission group that you want to watch the most.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We can say that the owner of the file (in this case, it&amp;rsquo;s &lt;code&gt;user&lt;/code&gt;) foo.py
+has read (r) and write (w) permissions, and the group and the rest of
+users have only read (r) permissions.&lt;/p&gt;
+&lt;h2 id="changing-file-permissions-with-chmod"&gt;Changing file permissions with chmod&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#changing-file-permissions-with-chmod"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;By using &lt;code&gt;chmod&lt;/code&gt; we can change the file permissions to let a user-based
+permission group have specific access(read/write/execute) to the file.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;chmod&lt;/code&gt; command usage takes the following arguments&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; chmod &amp;lt;groups to assign the permissions&amp;gt;&amp;lt;permissions to assign/remove&amp;gt; &amp;lt;file/folder names&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Groups to assign the permissions can be specified using the following flags&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;u - owner&lt;/li&gt;
+&lt;li&gt;g - group&lt;/li&gt;
+&lt;li&gt;o - others&lt;/li&gt;
+&lt;li&gt;a - all users. For all users, it can also be left blank&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let us look at few examples of &lt;code&gt;chmod&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="example-of-permission-change-to-a-file"&gt;Example of permission change to a file&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#example-of-permission-change-to-a-file"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Adding group&amp;rsquo;s write permission to the file foo.py&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rwxr-xr-x 1 user user 2203 Jul 23 23:26 foo.py
+user$ chmod g+w foo.py
+user$ ls -la
+-rwxrwxr-x 1 user user 2203 Jul 23 23:26 foo.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="another-example-of-permission-change"&gt;Another example of permission change&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#another-example-of-permission-change"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Removing group&amp;rsquo;s and others&amp;rsquo; execute permission to foo.py&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rwxrwxr-x 1 user user 2203 Jul 23 23:26 foo.py
+user$ chmod go-x foo.py
+user$ ls -la
+-rwxrw-r-- 1 user user 2203 Jul 23 23:26 foo.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="setting-chmod-file-permissions-using-binary-references"&gt;Setting chmod file permissions using Binary References&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#setting-chmod-file-permissions-using-binary-references"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Another method in which you can modify the permissions of a file
+using &lt;code&gt;chmod&lt;/code&gt; is via binary references which can be described as
+follows.&lt;/p&gt;
+&lt;p&gt;The whole string stating the permissions (rwxrwxrwx) is substituted
+by 3 numbers. The first number represents the Owner permission(u); the
+second represents the Group permissions(g); and the last number represents
+the permissions for all other users(o).&lt;/p&gt;
+&lt;p&gt;The permission types have assigned values and the sum of the
+combinations is taken as permissions for each user-based permission group.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;r = 4 # read&lt;/li&gt;
+&lt;li&gt;w = 2 # write&lt;/li&gt;
+&lt;li&gt;x = 1 # execute&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="example-for-permission-change-using-binary-reference"&gt;Example for permission change using Binary Reference&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#example-for-permission-change-using-binary-reference"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Assign to the foo.py file the following permissions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Owner: Read, Write and Execute&lt;/li&gt;
+&lt;li&gt;Group: Read and Execute&lt;/li&gt;
+&lt;li&gt;All others: Read and Execute&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Calculating the user-based permission groups values:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Owner: r+w+x = 4+2+1 = 7 &lt;br /&gt;
+Group: r+x = 4+0+1 = 5 &lt;br /&gt;
+All others: r+x = 4+0+1 = 5&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-nil" data-lang="nil"&gt; user$ ls -la
+-rwxrw-r-- 1 user user 2257 Jul 12 01:23 foo.py
+user$ chmod 755 foo.py
+user$ ls -la
+-rwxr-xr-x 1 user user 2257 Jul 12 01:23 foo.py
+&lt;/code&gt;&lt;/pre&gt;</description><author>tcluri@fakeEmailToMakeValidatorHappy.com (tcluri)</author><category domain="https://tcluri.github.io/tags/linux">linux</category><guid>https://tcluri.github.io/posts/linux-file-permissions/</guid><pubDate>Wed, 13 Jul 2022 12:45:00 +0530</pubDate></item></channel></rss>
