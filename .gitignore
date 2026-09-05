@@ -1,4 +1,4 @@
-# Build and cache artifacts (public/ is tracked for direct GitHub Pages deployment)
+# Build and cache artifacts (docs/ is tracked for direct GitHub Pages deployment)
 resources/
 .hugo_build.lock
 tmp/

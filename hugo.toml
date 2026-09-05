@@ -3,7 +3,7 @@ title = 'tcluri:$'
 
 contentdir = "content"
 layoutdir = "layouts"
-publishdir = "public"
+publishdir = "docs"
 
 # Remove files from destination not found in static directories
 cleandestinationdir = true
