@@ -1,6 +1,6 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on
 tcluri:$</title><link>https://tcluri.github.io/posts/</link><description>Recent content in Posts
-on tcluri:$</description><language>en-us</language><lastBuildDate>Sat, 05 Sep 2026 06:30:12 +0530</lastBuildDate><generator>Hugo -- gohugo.io</generator><docs>https://validator.w3.org/feed/docs/rss2.html</docs><atom:link href="https://tcluri.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog using org-mode in Doomemacs with Hugo</title><link>https://tcluri.github.io/posts/org-doomemacs-hugo/</link><description>&lt;p&gt;Hello! This is a post describing how anyone who uses Doomemacs can setup a blog on Github user pages and get writing.
+on tcluri:$</description><language>en-us</language><lastBuildDate>Sat, 23 Mar 2024 14:00:00 +0530</lastBuildDate><generator>Hugo -- gohugo.io</generator><docs>https://validator.w3.org/feed/docs/rss2.html</docs><atom:link href="https://tcluri.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog using org-mode in Doomemacs with Hugo</title><link>https://tcluri.github.io/posts/org-doomemacs-hugo/</link><description>&lt;p&gt;Hello! This is a post describing how anyone who uses Doomemacs can setup a blog on Github user pages and get writing.
 To get started, familiarize yourself with what I&amp;rsquo;m assuming you know to do.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Know how doomemacs works to the extent that you can find where your init.el is and upgrade/sync from the commandline.&lt;/li&gt;
