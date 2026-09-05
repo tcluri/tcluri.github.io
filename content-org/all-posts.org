@@ -265,3 +265,40 @@ For references (or) further reading:
 ** Thanks
 Thanks to [[https://baali.muse-amuse.in/][Shantanu]] and [[https://github.com/punchagan][Punch]] for suggesting me to write this post and for feedback which helped clarify
 things. Thank you for reading
+
+* DONE Testing Hugo Redefined and Local Build :hugo:doomemacs:blog:
+  CLOSED: [2026-09-05 Sat 06:50]
+:PROPERTIES:
+:EXPORT_FILE_NAME: testing-hugo-redefined
+:EXPORT_DESCRIPTION: Testing the end-to-end publishing workflow from Org Mode in Doom Emacs to Hugo Theme Redefined.
+:END:
+
+Welcome to the new publishing flow! This post verifies the end-to-end integration between Doom Emacs, ~ox-hugo~, and the updated *hugo-theme-redefined*.
+
+#+hugo: more
+
+** What's New?
+
+We upgraded the theme to be fully compatible with *Hugo v0.164.0* and simplified our publishing pipeline to a *Local Build Architecture*.
+
+** Sidenote Demonstration
+
+Here is some text with an inline sidenote #+begin_sidenote
+Sidenotes appear cleanly in the right margin on desktop screens and inline on mobile devices!
+#+end_sidenote to show how flexible Org shortcodes are.
+
+** Code Highlighting
+
+Here is an example snippet highlighted with Chroma:
+
+#+begin_src elisp
+;; Doom Emacs ox-hugo export command
+(defun my/publish-post ()
+  "Export the current Org subtree to Hugo markdown."
+  (interactive)
+  (org-hugo-export-wim-to-md))
+#+end_src
+
+** Conclusion
+
+Everything is configured and ready for smooth, distraction-free writing in Emacs!

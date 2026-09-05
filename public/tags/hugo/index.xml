@@ -1,6 +1,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on
 tcluri:$</title><link>https://tcluri.github.io/tags/hugo/</link><description>Recent content in Hugo
-on tcluri:$</description><language>en-us</language><lastBuildDate>Sat, 23 Mar 2024 14:00:00 +0530</lastBuildDate><generator>Hugo -- gohugo.io</generator><docs>https://validator.w3.org/feed/docs/rss2.html</docs><atom:link href="https://tcluri.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog using org-mode in Doomemacs with Hugo</title><link>https://tcluri.github.io/posts/org-doomemacs-hugo/</link><description>&lt;p&gt;Hello! This is a post describing how anyone who uses Doomemacs can setup a blog on Github user pages and get writing.
+on tcluri:$</description><language>en-us</language><lastBuildDate>Sat, 05 Sep 2026 06:50:00 +0530</lastBuildDate><generator>Hugo -- gohugo.io</generator><docs>https://validator.w3.org/feed/docs/rss2.html</docs><atom:link href="https://tcluri.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Testing Hugo Redefined and Local Build</title><link>https://tcluri.github.io/posts/testing-hugo-redefined/</link><description>&lt;blockquote&gt;Testing the end-to-end publishing workflow from Org Mode in Doom Emacs to Hugo Theme Redefined.&lt;/blockquote&gt;&lt;p&gt;Welcome to the new publishing flow! This post verifies the end-to-end integration between Doom Emacs, &lt;code&gt;ox-hugo&lt;/code&gt;, and the updated &lt;strong&gt;hugo-theme-redefined&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="what-s-new"&gt;What&amp;rsquo;s New?&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#what-s-new"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We upgraded the theme to be fully compatible with &lt;strong&gt;Hugo v0.164.0&lt;/strong&gt; and simplified our publishing pipeline to a &lt;strong&gt;Local Build Architecture&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="sidenote-demonstration"&gt;Sidenote Demonstration&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#sidenote-demonstration"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here is some text with an inline sidenote #+begin_sidenote
+Sidenotes appear cleanly in the right margin on desktop screens and inline on mobile devices!
+#+end_sidenote to show how flexible Org shortcodes are.&lt;/p&gt;
+&lt;h2 id="code-highlighting"&gt;Code Highlighting&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#code-highlighting"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here is an example snippet highlighted with Chroma:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-elisp" data-lang="elisp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;;; Doom Emacs ox-hugo export command&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(defun my/publish-post ()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Export the current Org subtree to Hugo markdown.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (interactive)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (org-hugo-export-wim-to-md))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#conclusion"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Everything is configured and ready for smooth, distraction-free writing in Emacs!&lt;/p&gt;</description><author>Tejaa.Chintaluri@fakeEmailToMakeValidatorHappy.com (Tejaa Chintaluri)</author><category domain="https://tcluri.github.io/tags/hugo">hugo</category><category domain="https://tcluri.github.io/tags/doomemacs">doomemacs</category><category domain="https://tcluri.github.io/tags/blog">blog</category><guid>https://tcluri.github.io/posts/testing-hugo-redefined/</guid><pubDate>Sat, 05 Sep 2026 06:50:00 +0530</pubDate></item><item><title>Blog using org-mode in Doomemacs with Hugo</title><link>https://tcluri.github.io/posts/org-doomemacs-hugo/</link><description>&lt;p&gt;Hello! This is a post describing how anyone who uses Doomemacs can setup a blog on Github user pages and get writing.
 To get started, familiarize yourself with what I&amp;rsquo;m assuming you know to do.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Know how doomemacs works to the extent that you can find where your init.el is and upgrade/sync from the commandline.&lt;/li&gt;
