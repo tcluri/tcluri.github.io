@@ -19,9 +19,13 @@ We upgraded the theme to be fully compatible with **Hugo v0.164.0** and simplifi
 
 ## Sidenote Demonstration {#sidenote-demonstration}
 
-Here is some text with an inline sidenote #+begin_sidenote
+Here is some text with an inline sidenote
+
+{{% sidenote %}}
 Sidenotes appear cleanly in the right margin on desktop screens and inline on mobile devices!
-\#+end_sidenote to show how flexible Org shortcodes are.
+{{% /sidenote %}}
+
+to show how flexible Org shortcodes are.
 
 
 ## Code Highlighting {#code-highlighting}

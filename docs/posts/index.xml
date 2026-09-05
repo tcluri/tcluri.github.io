@@ -4,9 +4,11 @@ on tcluri:$</description><language>en-us</language><lastBuildDate>Sat, 05 Sep 20
 &lt;h2 id="what-s-new"&gt;What&amp;rsquo;s New?&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#what-s-new"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We upgraded the theme to be fully compatible with &lt;strong&gt;Hugo v0.164.0&lt;/strong&gt; and simplified our publishing pipeline to a &lt;strong&gt;Local Build Architecture&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2 id="sidenote-demonstration"&gt;Sidenote Demonstration&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#sidenote-demonstration"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Here is some text with an inline sidenote #+begin_sidenote
+&lt;p&gt;Here is some text with an inline sidenote&lt;/p&gt;
+&lt;p&gt;&lt;span class="sidenote-number"&gt;&lt;small class="sidenote"&gt;
 Sidenotes appear cleanly in the right margin on desktop screens and inline on mobile devices!
-#+end_sidenote to show how flexible Org shortcodes are.&lt;/p&gt;
+&lt;/small&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;to show how flexible Org shortcodes are.&lt;/p&gt;
 &lt;h2 id="code-highlighting"&gt;Code Highlighting&amp;nbsp;&lt;a class="headline-hash no-text-decoration" href="#code-highlighting"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here is an example snippet highlighted with Chroma:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-elisp" data-lang="elisp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;;; Doom Emacs ox-hugo export command&lt;/span&gt;
